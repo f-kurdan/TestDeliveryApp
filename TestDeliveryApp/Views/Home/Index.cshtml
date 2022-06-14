@@ -1,0 +1,36 @@
+﻿@model Order
+@{
+	ViewData["Title"] = "Home Page";
+}
+
+
+<div class="card-body">
+	<h2>Make Order</h2>
+	<div class="container">
+		<form class="form-control" asp-action="Order" asp-controller="Home" method="post">
+			<input type="hidden" asp-for="ID" />
+			<div class="input-group">
+				<label asp-for="SenderAdress">SenderAdress</label>
+				<input type="text" asp-for="SenderAdress" />
+			</div>
+			<div class="input-group">
+
+				<label asp-for="SenderCity">SenderCity</label>
+				<input type="text" asp-for="SenderCity" />
+			</div>
+			<div class="input-group">
+				<label asp-for="RecipientAdress">RecipientAdress</label>
+				<input input-group" type="text" asp-for="RecipientAdress" />
+			</div>
+			<div class="input-group">
+				<label asp-for="RecipientCity">RecipientCity</label>
+				<input type="text" asp-for="RecipientCity" />
+			</div>
+			<div class="input-group">
+				<label asp-for="CargoPickUpDate">CargoPickUpDate</label>
+				<input type="datetime" asp-for="CargoPickUpDate" />
+			</div>
+			<button class="btn btn-primary" type="submit">Submit</button>
+		</form>
+	</div>
+</div>
