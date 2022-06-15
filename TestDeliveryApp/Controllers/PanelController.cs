@@ -1,15 +1,23 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using TestDeliveryApp.Data;
+using TestDeliveryApp.Models;
 
 namespace TestDeliveryApp.Controllers
 {
     public class PanelController : Controller
     {
-        // GET: PanelController
-        public ActionResult Index()
+        private readonly AppDbContext _context;
+
+        public PanelController(AppDbContext context)
         {
-            return View();
+            _context = context;
         }
+        // GET: PanelController
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
 
         // GET: PanelController/Details/5
         public ActionResult Details(int id)
@@ -18,6 +26,7 @@ namespace TestDeliveryApp.Controllers
         }
 
         // GET: PanelController/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -26,11 +35,30 @@ namespace TestDeliveryApp.Controllers
         // POST: PanelController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(Order order)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            var vm = new IndexViewModel
+            {
+                OrderID = order.ID,
+                SenderCity = order.SenderCity,
+                SenderAdress = order.SenderAdress,
+                RecipientCity = order.RecipientCity,
+                RecipientAdress = order.RecipientAdress,
+                CargoWeight = order.CargoWeight,
+                CargoPickUpDate = order.CargoPickUpDate,
+            };
+
+            _context.Orders.Add(order);
+            await _context.SaveChangesAsync();
+
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             catch
             {

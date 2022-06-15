@@ -1,36 +1,72 @@
-﻿@model Order
+﻿@model IndexViewModel
 @{
 	ViewData["Title"] = "Home Page";
 }
 
 
-<div class="card-body">
-	<h2>Make Order</h2>
-	<div class="container">
-		<form class="form-control" asp-action="Order" asp-controller="Home" method="post">
-			<input type="hidden" asp-for="ID" />
-			<div class="input-group">
-				<label asp-for="SenderAdress">SenderAdress</label>
-				<input type="text" asp-for="SenderAdress" />
-			</div>
-			<div class="input-group">
+<h1>Orders</h1>
 
-				<label asp-for="SenderCity">SenderCity</label>
-				<input type="text" asp-for="SenderCity" />
-			</div>
-			<div class="input-group">
-				<label asp-for="RecipientAdress">RecipientAdress</label>
-				<input input-group" type="text" asp-for="RecipientAdress" />
-			</div>
-			<div class="input-group">
-				<label asp-for="RecipientCity">RecipientCity</label>
-				<input type="text" asp-for="RecipientCity" />
-			</div>
-			<div class="input-group">
-				<label asp-for="CargoPickUpDate">CargoPickUpDate</label>
-				<input type="datetime" asp-for="CargoPickUpDate" />
-			</div>
-			<button class="btn btn-primary" type="submit">Submit</button>
-		</form>
-	</div>
-</div>
+<p>
+    <a asp-controller="Panel" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Orders[0].ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Orders[0].SenderCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Orders[0].SenderAdress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Orders[0].RecipientCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Orders[0].RecipientAdress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Orders[0].CargoWeight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Orders[0].CargoPickUpDate)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Orders)
+    {
+        <tr>
+            <td>
+                 @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SenderCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SenderAdress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RecipientCity)
+            </td>
+             <td>
+               @Html.DisplayFor(modelItem => item.RecipientAdress)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.CargoWeight)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.CargoPickUpDate)
+            </td>
+            <td>
+                @*<a asp-page="./Edit" asp-route-id="@item.CourseID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.CourseID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.CourseID">Delete</a>*@
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

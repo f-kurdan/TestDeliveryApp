@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TestDeliveryApp.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialCraete : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,7 +18,7 @@ namespace TestDeliveryApp.Migrations
                     SenderCity = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SenderAdress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RecipientCity = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RecipientAdress = table.Column<int>(type: "int", nullable: false),
+                    RecipientAdress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CargoWeight = table.Column<int>(type: "int", nullable: false),
                     CargoPickUpDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },

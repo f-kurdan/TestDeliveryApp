@@ -36,8 +36,9 @@ namespace TestDeliveryApp.Migrations
                     b.Property<int>("CargoWeight")
                         .HasColumnType("int");
 
-                    b.Property<int>("RecipientAdress")
-                        .HasColumnType("int");
+                    b.Property<string>("RecipientAdress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RecipientCity")
                         .IsRequired()

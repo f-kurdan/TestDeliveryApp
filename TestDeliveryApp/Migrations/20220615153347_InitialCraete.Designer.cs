@@ -12,8 +12,8 @@ using TestDeliveryApp.Data;
 namespace TestDeliveryApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220614173734_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220615153347_InitialCraete")]
+    partial class InitialCraete
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,8 +38,9 @@ namespace TestDeliveryApp.Migrations
                     b.Property<int>("CargoWeight")
                         .HasColumnType("int");
 
-                    b.Property<int>("RecipientAdress")
-                        .HasColumnType("int");
+                    b.Property<string>("RecipientAdress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RecipientCity")
                         .IsRequired()

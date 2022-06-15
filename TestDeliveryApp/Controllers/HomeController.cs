@@ -1,21 +1,25 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using TestDeliveryApp.Data;
 using TestDeliveryApp.Models;
 
 namespace TestDeliveryApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly AppDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(AppDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var orders = _context.Orders.AsNoTracking().ToList();
+
+            return View(new IndexViewModel { Orders = orders});
         }
 
         public IActionResult Privacy()
