@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TestDeliveryApp.Migrations
 {
-    public partial class InitialCraete : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,8 +13,7 @@ namespace TestDeliveryApp.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ID = table.Column<int>(type: "int", nullable: false),
                     SenderCity = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SenderAdress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RecipientCity = table.Column<string>(type: "nvarchar(max)", nullable: false),

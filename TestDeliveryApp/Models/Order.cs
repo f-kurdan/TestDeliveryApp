@@ -5,7 +5,7 @@ namespace TestDeliveryApp.Models
 {
     public class Order
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
         [Required]
         [Display(Name = "Sender City")]

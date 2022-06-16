@@ -7,65 +7,65 @@
 <h1>Orders</h1>
 
 <p>
-    <a asp-controller="Panel" asp-action="Create">Create New</a>
+	<a asp-controller="Panel" asp-action="Create">Create New</a>
 </p>
 <table class="table">
-    <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Orders[0].ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Orders[0].SenderCity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Orders[0].SenderAdress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Orders[0].RecipientCity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Orders[0].RecipientAdress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Orders[0].CargoWeight)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Orders[0].CargoPickUpDate)
-        </th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model.Orders)
-    {
-        <tr>
-            <td>
-                 @Html.DisplayFor(modelItem => item.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SenderCity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SenderAdress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RecipientCity)
-            </td>
-             <td>
-               @Html.DisplayFor(modelItem => item.RecipientAdress)
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.CargoWeight)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CargoPickUpDate)
-            </td>
-            <td>
-                <a asp-controller="Panel" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-               @* <a asp-page="./Delete" asp-route-id="@item.CourseID">Delete</a>*@
-            </td>
-        </tr>
-    }
-    </tbody>
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Orders[0].ID)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Orders[0].SenderCity)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Orders[0].SenderAdress)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Orders[0].RecipientCity)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Orders[0].RecipientAdress)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Orders[0].CargoWeight)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Orders[0].CargoPickUpDate)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.Orders)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.ID)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.SenderCity)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.SenderAdress)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.RecipientCity)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.RecipientAdress)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.CargoWeight)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.CargoPickUpDate)
+				</td>
+				<td>
+					<a asp-controller="Panel" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+					<a asp-controller="Panel" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
 </table>

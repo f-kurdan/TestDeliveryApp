@@ -13,17 +13,6 @@ namespace TestDeliveryApp.Controllers
         {
             _context = context;
         }
-        // GET: PanelController
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-
-        // GET: PanelController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: PanelController/Create
         [HttpGet]
@@ -41,6 +30,8 @@ namespace TestDeliveryApp.Controllers
             {
                 return View();
             }
+
+            order.ID = new Random().Next(1000, 2000);
 
             var vm = new OrderViewModel
             {
@@ -79,8 +70,8 @@ namespace TestDeliveryApp.Controllers
 
             var vm = new OrderViewModel
             {
-                OrderID=order.ID,
-                SenderCity =order.SenderCity,
+                OrderID = order.ID,
+                SenderCity = order.SenderCity,
                 SenderAdress = order.SenderAdress,
                 RecipientCity = order.RecipientCity,
                 RecipientAdress = order.RecipientAdress,
@@ -101,7 +92,7 @@ namespace TestDeliveryApp.Controllers
                 ID = vm.OrderID,
                 SenderCity = vm.SenderCity,
                 SenderAdress = vm.SenderAdress,
-                RecipientCity =vm.RecipientCity,
+                RecipientCity = vm.RecipientCity,
                 RecipientAdress = vm.RecipientAdress,
                 CargoWeight = vm.CargoWeight,
                 CargoPickUpDate = vm.CargoPickUpDate
@@ -121,19 +112,53 @@ namespace TestDeliveryApp.Controllers
         }
 
         // GET: PanelController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int? id)
         {
-            return View();
+            if (id == null)
+                return NotFound();
+
+            var order = await _context.Orders.FirstOrDefaultAsync(x => x.ID == id);
+
+            if (order == null)
+                return NotFound();
+
+            var vm = new OrderViewModel
+            {
+                OrderID = order.ID,
+                SenderCity = order.SenderCity,
+                SenderAdress = order.SenderAdress,
+                RecipientCity = order.RecipientCity,
+                RecipientAdress = order.RecipientAdress,
+                CargoWeight = order.CargoWeight,
+                CargoPickUpDate = order.CargoPickUpDate
+            };
+
+            return View(vm);
         }
 
         // POST: PanelController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(OrderViewModel vm)
         {
+
+            var order = new Order
+            {
+                ID = vm.OrderID,
+                SenderCity = vm.SenderCity,
+                SenderAdress = vm.SenderAdress,
+                RecipientCity = vm.RecipientCity,
+                RecipientAdress = vm.RecipientAdress,
+                CargoWeight = vm.CargoWeight,
+                CargoPickUpDate = vm.CargoPickUpDate
+            };
+
+            _context.Remove(order);
+            await _context.SaveChangesAsync();
+
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             catch
             {

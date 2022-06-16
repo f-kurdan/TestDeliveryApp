@@ -25,10 +25,7 @@ namespace TestDeliveryApp.Migrations
             modelBuilder.Entity("TestDeliveryApp.Models.Order", b =>
                 {
                     b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<DateTime>("CargoPickUpDate")
                         .HasColumnType("datetime2");

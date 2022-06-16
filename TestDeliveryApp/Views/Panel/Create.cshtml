@@ -11,11 +11,6 @@
 	<div class="col-md-4">
 		<form asp-controller="Panel" asp-action="Create" method="post">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			@*<div class="form-group">
-				 <label asp-for="ID" class="control-label"></label>
-				<input type="hidden" asp-for="ID" />
-				<span asp-validation-for="ID" class="text-danger"></span>
-			</div>*@
 			<div class="form-group">
 				<label asp-for="SenderCity" class="control-label"></label>
 				<input asp-for="SenderCity" class="form-control" />
@@ -45,6 +40,9 @@
 				<label asp-for="CargoPickUpDate" class="control-label"></label>
 				<input asp-for="CargoPickUpDate" class="form-control" />
 				<span asp-validation-for="CargoPickUpDate" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label class="control-label"></label>
 			</div>
 			<div class="form-group">
 				<input type="submit" value="Create" class="btn btn-primary" />

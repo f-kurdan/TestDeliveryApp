@@ -12,8 +12,8 @@ using TestDeliveryApp.Data;
 namespace TestDeliveryApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220615153347_InitialCraete")]
-    partial class InitialCraete
+    [Migration("20220616175846_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,10 +27,7 @@ namespace TestDeliveryApp.Migrations
             modelBuilder.Entity("TestDeliveryApp.Models.Order", b =>
                 {
                     b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<DateTime>("CargoPickUpDate")
                         .HasColumnType("datetime2");
