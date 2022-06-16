@@ -42,7 +42,7 @@ namespace TestDeliveryApp.Controllers
                 return View();
             }
 
-            var vm = new IndexViewModel
+            var vm = new OrderViewModel
             {
                 OrderID = order.ID,
                 SenderCity = order.SenderCity,
@@ -67,19 +67,52 @@ namespace TestDeliveryApp.Controllers
         }
 
         // GET: PanelController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int? id)
         {
-            return View();
+            if (id == null)
+                return NotFound();
+
+            var order = await _context.Orders.FirstOrDefaultAsync(x => x.ID == id);
+
+            if (order == null)
+                return NotFound();
+
+            var vm = new OrderViewModel
+            {
+                OrderID=order.ID,
+                SenderCity =order.SenderCity,
+                SenderAdress = order.SenderAdress,
+                RecipientCity = order.RecipientCity,
+                RecipientAdress = order.RecipientAdress,
+                CargoWeight = order.CargoWeight,
+                CargoPickUpDate = order.CargoPickUpDate
+            };
+
+            return View(vm);
         }
 
         // POST: PanelController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(OrderViewModel vm)
         {
+            var order = new Order
+            {
+                ID = vm.OrderID,
+                SenderCity = vm.SenderCity,
+                SenderAdress = vm.SenderAdress,
+                RecipientCity =vm.RecipientCity,
+                RecipientAdress = vm.RecipientAdress,
+                CargoWeight = vm.CargoWeight,
+                CargoPickUpDate = vm.CargoPickUpDate
+            };
+
+            _context.Update(order);
+            await _context.SaveChangesAsync();
+
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             catch
             {

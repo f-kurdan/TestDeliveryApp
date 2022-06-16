@@ -2,7 +2,7 @@
 
 namespace TestDeliveryApp.Models
 {
-    public class IndexViewModel
+    public class OrderViewModel
     {
         public int OrderID { get; set; }
         [Required]

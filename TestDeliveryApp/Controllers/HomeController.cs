@@ -19,7 +19,7 @@ namespace TestDeliveryApp.Controllers
         {
             var orders = _context.Orders.AsNoTracking().ToList();
 
-            return View(new IndexViewModel { Orders = orders});
+            return View(new OrderViewModel { Orders = orders});
         }
 
         public IActionResult Privacy()

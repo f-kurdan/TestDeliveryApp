@@ -1,4 +1,4 @@
-﻿@model IndexViewModel
+﻿@model OrderViewModel
 @{
 	ViewData["Title"] = "Home Page";
 }
@@ -59,12 +59,11 @@
                 @Html.DisplayFor(modelItem => item.CargoWeight)
             </td>
             <td>
-                @Html.DisplayFor(model => item.CargoPickUpDate)
+                @Html.DisplayFor(modelItem => item.CargoPickUpDate)
             </td>
             <td>
-                @*<a asp-page="./Edit" asp-route-id="@item.CourseID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.CourseID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.CourseID">Delete</a>*@
+                <a asp-controller="Panel" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+               @* <a asp-page="./Delete" asp-route-id="@item.CourseID">Delete</a>*@
             </td>
         </tr>
     }
